@@ -68,7 +68,7 @@ void Pixel::drawPixel(Pos posCam, std::vector<Visible*>* obj, Source src){
 			if(interTemp != NULL)
 			{
 				float d = inter.getOrigine().distanceAvecPoint(interTemp->getOrigine());
-				if( 0.1 < d)
+				if(0.1<d && inter.getOrigine().distanceAvecPoint(src.getPosition()) > interTemp->getOrigine().distanceAvecPoint(src.getPosition()))
 				{
 					//std::cout << "lol" << std::endl;
 					e = 0;

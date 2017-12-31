@@ -12,6 +12,7 @@
 #include "Visible.hpp"
 #include "Intersection.hpp"
 #include "Segment.hpp"
+#include "Triangle.hpp"
 
 using namespace std;
 
@@ -25,14 +26,18 @@ int main()
 	o.writeInOutputFile();
 
 	/*std::vector<Visible*>* objects = new std::vector<Visible*>;
-	Pos p1(100,100,0);
-	Pos p2(2,4,2);
-	Segment s(p1,p2);
-	Pos p(90,95,60);
+	Pos p1(1,0,1);
+	Pos p2(0,1,1);
+	Pos p3(-1,0,2);
+	Pos p(0,0.5,1);
+	Pos p4(0,0,0);
+	Segment s(p4,p);
+	
 	RGB c(255,255,5);
-	Sphere* sphere = new Sphere(p,c,0.3,2);
-	objects->push_back(sphere);
-	Intersection* i = objects->at(0)->estTraverse(s);*/
+	Triangle* triangle = new Triangle(p1,p2,p3,c,0.3);
+	objects->push_back(triangle);
+	Intersection* i = objects->at(0)->estTraverse(s);
+	cout << i->getOrigine() << endl;*/
 
 	return 0;
 }

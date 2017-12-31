@@ -14,6 +14,7 @@
 #include "Scene.hpp"
 #include "Source.hpp"
 #include "Sphere.hpp"
+#include "Triangle.hpp"
 
 
 class InputFileControlleur
@@ -190,7 +191,7 @@ void InputFileControlleur::objectsInScene()
 			{
 				s+=inputFile.get();
 			}
-			if(s.compare("sphere:")==0)
+			if(s.compare("sphere:")==0 || s.compare("triangle:")==0)
 			{
 				Visible* o;
 				o = constrObject(s);
@@ -223,6 +224,27 @@ Visible* InputFileControlleur::constrObject(std::string s)
 		Sphere* sphere = new Sphere(p,c,ref,ray);
 		std::cout << "création de " << *sphere << std::endl;
 		return sphere;
+	}
+	else if(s.compare("triangle:")==0)
+	{
+		Pos p1(recupNextPos());
+		sauteCommentairesEtBlancs();
+
+		Pos p2(recupNextPos());
+		sauteCommentairesEtBlancs();
+
+		Pos p3(recupNextPos());
+		sauteCommentairesEtBlancs();
+
+		sauteCommentairesEtBlancs();
+		RGB c(recupNextRGB());
+
+		sauteCommentairesEtBlancs();
+		float ref(recupNextFloat());
+
+		Triangle* trianle = new Triangle(p1,p2,p3,c,ref);
+		std::cout << "création de " << *trianle << std::endl;
+		return trianle;
 	}
 	else
 	{

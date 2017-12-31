@@ -24,6 +24,7 @@ class Pos
 	void setY(float y){this->y = y;}
 	void setZ(float z){this->z = z;}
 	float distanceAvecPoint(Pos p);
+	Pos produitVectoriel(Pos p2);
 	static float scal(Pos p1, Pos p2);
 	static float norm(Pos p);
 
@@ -132,6 +133,14 @@ float Pos::norm(Pos p)
 float Pos::calculeCos(Pos vect2) const
 {
 	return (scal(*this, vect2)/(norm(*this)*norm(vect2)));
+}
+
+Pos Pos::produitVectoriel(Pos p2)
+{
+	Pos p((y*p2.z)-(z*p2.y),
+		(z*p2.x)-(x*p2.z),
+		(x*p2.y)-(y*p2.x));
+	return p;
 }
 
 

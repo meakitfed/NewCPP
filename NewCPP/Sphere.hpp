@@ -16,7 +16,6 @@ class Sphere : public Visible
 	Sphere(Pos p, RGB c, float r, float ray) : Visible(p,c,r), rayon(ray) {}
 	virtual void afficher(std::ostream &flux) const;
 	virtual Intersection* estTraverse(Segment s);
-	virtual float calculerAngle(Intersection i, Pos src);
 	Segment rayReflechi(Segment rayIncident, Intersection i);
 	Pos calculNormale (Pos p);
 };
@@ -82,7 +81,7 @@ void Sphere::afficher(std::ostream &flux) const
 
 std::ostream &operator<<(std::ostream &flux, Sphere const& s)
 {
-    s.afficher(flux) ;
+    s.afficher(flux);
     return flux;
 }
 
@@ -93,13 +92,6 @@ Pos Sphere::calculNormale(Pos p)
 	return normale;
 }
 
-//à changer
-float Sphere::calculerAngle(Intersection i, Pos src)
-{
-	Pos vec1 = position - i.getOrigine(); 
-	Pos vec2 = src - i.getOrigine();
-	float angle = Pos::scal(vec1,vec2);
-	return acos(angle/(Pos::norm(vec1)*Pos::norm(vec2))) - M_PI;
-}
+
 
 #endif

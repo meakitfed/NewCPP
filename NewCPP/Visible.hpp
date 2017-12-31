@@ -28,7 +28,7 @@ class Visible
 	void setPosition(Pos p){position = p;};
 	void setColor(RGB color){this->color = color;}
 	RGB getColor(){return color;}
-	virtual float calculerAngle(Intersection i, Pos src){return 0;};
+	float calculerAngle(Intersection i, Pos src);
 };
 
 void Visible::afficher(std::ostream &flux) const
@@ -40,6 +40,13 @@ std::ostream &operator<<(std::ostream &flux, Visible const& v)
 {
     v.afficher(flux) ;
     return flux;
+}
+float Visible::calculerAngle(Intersection i, Pos src)
+{
+	Pos vec1 = position - i.getOrigine(); 
+	Pos vec2 = src - i.getOrigine();
+	float angle = Pos::scal(vec1,vec2);
+	return acos(angle/(Pos::norm(vec1)*Pos::norm(vec2))) - M_PI;
 }
 
 #endif
