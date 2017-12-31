@@ -18,12 +18,12 @@ using namespace std;
 
 int main()
 {
-
 	Scene* s = new Scene();
 	InputFileControlleur f(s,"fichier");
 	f.parseInputFile();
-	OutputFileControlleur o(s,"hey");
+	OutputFileControlleur o(s,"image.ppm");
 	o.writeInOutputFile();
-
+	//problème d'appel des destructeurs, pas eu le temps de comprendre.
+	//delete s;
 	return 0;
 }

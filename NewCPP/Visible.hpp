@@ -18,8 +18,8 @@ class Visible
 
 	public :
 	Visible() {};
+	virtual ~Visible() {};
 	Visible(Pos p, RGB c, float r): color(c), reflexion(r), position(p){};
-
 	virtual Pos calculNormale(Pos p) = 0;
 	virtual Intersection* estTraverse(Segment s) = 0;
 	virtual void afficher(std::ostream &flux) const;
@@ -37,9 +37,11 @@ void Visible::afficher(std::ostream &flux) const
 
 std::ostream &operator<<(std::ostream &flux, Visible const& v)
 {
-    v.afficher(flux) ;
+    v.afficher(flux);
     return flux;
 }
+
+//calcule l'angle entre l'intersection et le rayon incident
 float Visible::calculerAngle(Intersection i, Pos src)
 {
 	Pos vec1 = position - i.getOrigine(); 

@@ -17,10 +17,10 @@
 
 class OutputFileControlleur
 {
+	private:
 	Scene* scene;
 	std::string outputFileName;
 	std::ofstream outputFile;
-	
 	
 	public :
 	OutputFileControlleur(Scene* s,std::string outputPath): scene(s), outputFileName(outputPath)
@@ -35,6 +35,8 @@ class OutputFileControlleur
             std::cout << outputFileName <<" a été ouvert !" << std::endl;
         }
 	};
+
+	//fonction qui écrit dans le fichier de sortie après avoir changé la couleur des pixels
 	void writeInOutputFile()
 	{
 		scene->getEcran().initEcran(scene->getBackgroundColor());
@@ -49,18 +51,12 @@ class OutputFileControlleur
 			for(j=0; j<scene->getEcran().getResolution(); j++)
 			{
 				outputFile << scene->getEcran().getPixel()[i][j].getColor();
-				if(j+1!=scene->getEcran().getResolution())
-				{
-					outputFile << " ";
-				}
-			
 			}
 			outputFile << std::endl;
 		}
 		outputFile.close();
+		std::cout << "image écrite dans " << outputFileName << "." << std::endl;
 
 	}
-
-	
 };
 #endif

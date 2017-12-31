@@ -21,6 +21,8 @@ class Segment
 	Pos getOrigine(){return origine;}
 };
 
+
+//modifie le rayon incident pour qu'il devienne le rayon réfléchi
 void Segment::prolongeSegment(Intersection i)
 {
 	origine = i.getOrigine();
@@ -31,20 +33,5 @@ void Segment::prolongeSegment(Intersection i)
 	newvecteur.setZ(-(2*scalaire*i.getNormale().getZ())-this->vecteur.getZ());
 	vecteur = newvecteur;
 }
-
-/*void Segment::prolongeSegment(Intersection inter)
-{
-
-        //on rend vecteur unitaire
-        Pos directionUnitaireIncident = vecteur/vecteur.norm(vecteur);
-        //cout << "incident : " << directionUnitaireIncident << "normale " << normale.getDirection() << endl;
-
-
-        Pos directionReflechi = directionUnitaireIncident - 2*(directionUnitaireIncident.scal(vecteur,inter.getNormale()))*inter.getNormale();
-
-        origine = inter.getOrigine();
-        vecteur = directionReflechi;
-}*/
-
 
 #endif

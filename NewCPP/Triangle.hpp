@@ -23,12 +23,14 @@ class Triangle : public Visible
 	virtual Pos calculNormale(Pos p);
 };
 
-
+//calcule la normale du triangle
 Pos Triangle::calculNormale(Pos p)
 {
-	return position.segment(position1).produitVectoriel(position.segment(position2));
+	p = position;
+	return p.segment(position1).produitVectoriel(position.segment(position2));
 }
 
+//retourne vrai si le point rentré en argument est dans le triangle
 bool Triangle::dansTriangle(Pos p)
 {
 
@@ -49,6 +51,9 @@ bool Triangle::dansTriangle(Pos p)
 	return (alpha<=1 && alpha >=0 && beta<=1  && beta >=0  && gamma<=1  && gamma >=0  );
 }
 
+
+//regarde si la droite s traverse le triangle et 
+//renvoie le point d'intersection (marche avec des tests unitaires mais pas en affichage)
 Intersection* Triangle::estTraverse(Segment s)
 {
 	

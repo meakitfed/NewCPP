@@ -9,11 +9,13 @@
 
 class Pixel 
 {
+	private:
 	Pos position;
 	RGB couleur;
 
 	public :
 	Pixel() {};
+	~Pixel() {};
 	Pixel(Pos p, RGB c) : position(p), couleur(c) {};
 	RGB getColor(){return couleur;}
 	void setColor(RGB c){couleur=c;}
@@ -23,7 +25,7 @@ class Pixel
 	RGB couleurPropre(Intersection inter, Source src, int e);
 };
 
-
+//calcule la couleur qui vient de l'objet en lui-même (seulement avec la source lumineuse)
 RGB Pixel::couleurPropre(Intersection inter, Source src , int e)
 {
 	RGB couleurCalculee;
@@ -32,7 +34,7 @@ RGB Pixel::couleurPropre(Intersection inter, Source src , int e)
 	return couleurCalculee;
 }
 
-
+//fonction qui renvoie la couleur d'un pixel 
 RGB Pixel::drawPixel(Segment incident, std::vector<Visible*>* obj, Source src){
 	float distanceAvecPixel=-1;
 	Intersection inter;
@@ -85,7 +87,6 @@ RGB Pixel::drawPixel(Segment incident, std::vector<Visible*>* obj, Source src){
 		
 		return couleurCalculee;
 	}
-
 	else
 	{
 		RGB couleurCalculee(0,0,0);

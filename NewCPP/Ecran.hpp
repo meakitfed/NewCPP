@@ -17,6 +17,15 @@ class Ecran
 
 	public :
 	Ecran(){};
+	~Ecran()
+	{
+		/*//ne marche pas, pas eu le temps de comprendre pourquoi (multiple free ?)
+		for(int i=0; i<resolution;i++)
+		{
+			delete [] pixel[i];
+		}
+		delete [] pixel;*/
+	}
 	Ecran(Pos gh1, Pos dh1, Pos gb1, int res): gh(gh1),dh(dh1), gb(gb1), resolution(res) 
 	{ 
 		RGB c;
@@ -34,6 +43,7 @@ class Ecran
 	int getResolution(){return resolution;}
 };
 
+//Renvoie la position d'un pixel dans le tableau
 Pos Ecran::getPosAt(int x, int y)  
 {
     float r = resolution;
@@ -47,6 +57,7 @@ Pos Ecran::getPosAt(int x, int y)
     return p;
 }
 
+//initialise les pixels de l'écran
 void Ecran::initEcran(RGB backgroundColor)
 {
 	for(int i=0; i<resolution;i++)
@@ -59,7 +70,7 @@ void Ecran::initEcran(RGB backgroundColor)
 	}
 }
 
-//TO DO : modifier tous les appels de draw image pour enlever src
+//change la couleur des pixels de l'écran
 void Ecran::drawImage(Pos posCam, std::vector<Visible*>* obj, Source src)
 {
 	//pour chaque pixel

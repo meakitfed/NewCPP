@@ -37,9 +37,7 @@ class InputFileControlleur
             std::cout << inputFileName <<" a été ouvert !" << std::endl;
         }
 	};
-	~InputFileControlleur() { delete scene;}
-
-
+	~InputFileControlleur() {delete scene;}
 	void sauteCommentaires();
 	void sauteBlancs();
 	void sauteCommentairesEtBlancs();
@@ -52,9 +50,9 @@ class InputFileControlleur
 	float recupNextFloat();
 	Visible* constrObject(std::string s);
 
-	
 };
 
+//Fonction qui parse l'ensemble du fichier et stock les données dans la Scene
 void InputFileControlleur::parseInputFile()
 {
 	std::cout << "\nVoici les données enregistrés dans la scène : \n\n" ;
@@ -174,6 +172,7 @@ float InputFileControlleur::recupNextFloat()
 	return std::strtof(s.c_str(),0);
 }
 
+//parse tous els objets dans le fichier qui seront ensuite créées dans la scene
 void InputFileControlleur::objectsInScene()
 {
 	
@@ -206,6 +205,7 @@ void InputFileControlleur::objectsInScene()
 	}
 }
 
+//construit un objet et le renvoie pour le stocker
 Visible* InputFileControlleur::constrObject(std::string s)
 {
 	if(s.compare("sphere:")==0)

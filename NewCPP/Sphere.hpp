@@ -21,7 +21,8 @@ class Sphere : public Visible
 
 
 
-//regarder ici si erreur
+//renvoie NULL si aucun objet de la scène est traversé par le segment(en fait une droite), 
+//renvoie le point d'intersection
 Intersection* Sphere::estTraverse(Segment s)
 {
 
@@ -73,6 +74,8 @@ std::ostream &operator<<(std::ostream &flux, Sphere const& s)
     return flux;
 }
 
+
+//calcule la normale de la sphere
 Pos Sphere::calculNormale(Pos p)
 {
 	Pos normale = position.segment(p);

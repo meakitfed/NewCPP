@@ -16,8 +16,6 @@ class Intersection
 
 	Intersection(){};
 	Intersection(Pos p1, Pos p2, RGB c, float r) : origine(p1),normale(p2), color(c), refl(r) {};
-
-
 	float getRefl(){return refl;}
 	void setRefl(float r){this->refl = r;}
 	Pos getOrigine(){return origine;}
@@ -26,14 +24,6 @@ class Intersection
 	void setOrigine(Pos origine){this->origine = origine;}
 	void setNormale(Pos normale){this->normale = normale;}
 	void setColor(RGB color){this->color = color;}
-	bool estEgal(Intersection p);
 };
-
-
-//à changer ? 
-bool Intersection::estEgal(Intersection p){
-	return this->origine.getX() == p.origine.getX() 
-	&& this->origine.getY() == p.origine.getY() && this->origine.getZ() == p.origine.getZ(); 
-}
 
 #endif

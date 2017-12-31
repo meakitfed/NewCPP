@@ -12,8 +12,6 @@ class Pos
 	float z;
 
 	public :
-
-
 	Pos(){};
 	Pos(float x1, float y1, float z1) : x(x1), y(y1), z(z1){};
 	Pos segment(Pos p2);
@@ -31,70 +29,69 @@ class Pos
 	void afficher(std::ostream &flux) const;
 	float calculeCos(Pos vecteur2) const;
 
+	//Tous les opérateurs utiles associés aux Point 
+	//Trouvés sur cpp.reference
+	Pos& operator+=(const Pos& rhs) 
+	{                           
+		x += rhs.x;
+		y += rhs.y;
+		z += rhs.z;	
+		return *this;
+	}
+		 
+	friend Pos operator+(Pos lhs,const Pos& rhs) 
+	{
+		lhs += rhs; 
+		return lhs; 
+	}
 
-Pos& operator+=(const Pos& rhs) 
-{                           
-	x += rhs.x;
-	y += rhs.y;
-	z += rhs.z;	
-	return *this;
-}
-	 
-friend Pos operator+(Pos lhs,const Pos& rhs) 
-{
-	lhs += rhs; 
-	return lhs; 
-}
+	Pos& operator-=(const Pos& rhs) 
+	{                           
+		x -= rhs.x;
+		y -= rhs.y;
+		z -= rhs.z;	
+		return *this;
+	}
+		 
+	friend Pos operator-(Pos lhs,const Pos& rhs) 
+	{
+		lhs -= rhs; 
+		return lhs; 
+	}
 
-Pos& operator-=(const Pos& rhs) 
-{                           
-	x -= rhs.x;
-	y -= rhs.y;
-	z -= rhs.z;	
-	return *this;
-}
-	 
-friend Pos operator-(Pos lhs,const Pos& rhs) 
-{
-	lhs -= rhs; 
-	return lhs; 
-}
+	Pos& operator*=(const float f) 
+	{                           
+		x *= f;
+		y *= f;
+		z *= f;	
+		return *this;
+	} 
+		
+	friend Pos operator*(Pos lhs, const float f)
+	{
+		lhs *= f; 
+		return lhs;
+	}
 
-Pos& operator*=(const float f) 
-{                           
-	x *= f;
-	y *= f;
-	z *= f;	
-	return *this;
-}
-	 
-	
-friend Pos operator*(Pos lhs, const float f)
-{
-	lhs *= f; 
-	return lhs;
-}
+	friend Pos operator*(const float f, Pos lhs)
+	{
+		lhs *= f; 
+		return lhs;
+	}
 
-friend Pos operator*(const float f, Pos lhs)
-{
-	lhs *= f; 
-	return lhs;
-}
-
-
-Pos& operator/=(const float f) 
-{                           
-	x /= f;
-	y /= f;
-	z /= f;	
-	return *this;
-}
-	 
-friend Pos operator/(Pos lhs,const float f) 
-{
-	lhs /= f; 
-	return lhs; 
-}
+	Pos& operator/=(const float f) 
+	{                           
+		x /= f;
+		y /= f;
+		z /= f;	
+		return *this;
+	}
+		 
+	friend Pos operator/(Pos lhs,const float f) 
+	{
+		lhs /= f; 
+		return lhs; 
+	}
 };
 
 void Pos::afficher(std::ostream &flux) const
@@ -102,6 +99,7 @@ void Pos::afficher(std::ostream &flux) const
     flux << "[x : " << x << " - y : " << y << " - z : " << z << "]";
 }
 
+//retourne le vec3 du segment entre les deux points
 Pos Pos::segment(Pos p2)
 {	
 	Pos p(p2.getX()-x, p2.getY()-y, p2.getZ()-z);
@@ -120,21 +118,25 @@ std::ostream &operator<<(std::ostream &flux, Pos const& pos)
     return flux;
 }
 
+//calcule le scalaire entre deux vecteurs
 float Pos::scal(Pos p1, Pos p2)
 {
  	return p1.x*p2.x+ p1.y*p2.y+ p1.z*p2.z;
 }
 
+//calcule la norme d'un vecteur
 float Pos::norm(Pos p)
 {
 	return sqrt(pow(p.x,2)+ pow(p.y,2)+ pow(p.z,2));
 }
 
+//calcule le cos d'un vecteur par apport à un autre
 float Pos::calculeCos(Pos vect2) const
 {
 	return (scal(*this, vect2)/(norm(*this)*norm(vect2)));
 }
 
+//produit vectoriel de deux vecteurs
 Pos Pos::produitVectoriel(Pos p2)
 {
 	Pos p((y*p2.z)-(z*p2.y),

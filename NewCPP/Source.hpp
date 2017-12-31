@@ -2,18 +2,23 @@
 #define SOURCE_H 
 
 #include "Visible.hpp"
+#include "Pos.hpp"
+#include "RGB.hpp"
 #include <iostream>
 
-class Source : public Visible
+class Source 
 {
+	Pos position;
+	RGB color; 
 	public :
-	Source() : Visible() {};
-	Source(Pos p, RGB c) : Visible(p,c,0) {};
+	Source() {};
+	Source(Pos p, RGB c) : position(p), color(c) {};
 	virtual void afficher(std::ostream &flux) const;
-
-	//TO DO ces deux fonction sont juste là paske source extends visible. C'est nul
-	virtual Pos calculNormale(Pos p){return p;};
-	virtual Intersection* estTraverse(Segment s){Intersection* nul = NULL; s=s; return nul;};	
+	Pos getPosition(){ return position;};
+	void setPosition(Pos p){position = p;};
+	void setColor(RGB color){this->color = color;}
+	RGB getColor(){return color;}
+	
 };
 
 void Source::afficher(std::ostream &flux) const

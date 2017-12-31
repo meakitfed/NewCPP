@@ -21,7 +21,14 @@ class Scene
 
 	public :
 	Scene(){}
-	~Scene(){}
+	~Scene()
+	{
+		/*for(std::vector<Visible*>::iterator o = objects->begin() ; o != objects->end(); ++o)
+		{
+			delete *o;
+		}
+		delete objects;*/
+	}
 	Camera getCamera(){return camera;}
 	Ecran getEcran(){return ecran;}
 	void setBackgroundColor(RGB c){backgroundColor = c;}
