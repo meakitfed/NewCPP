@@ -92,7 +92,7 @@ Intersection* Triangle::estTraverse(Segment s)
 			std::cout << p << std::endl;
 			if(dansTriangle(p))
 			{
-				Intersection* i = new Intersection(p,p,color);
+				Intersection* i = new Intersection(p,p,color,reflexion);
 				return i;
 			}
 			else

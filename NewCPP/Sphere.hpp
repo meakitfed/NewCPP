@@ -16,14 +16,14 @@ class Sphere : public Visible
 	Sphere(Pos p, RGB c, float r, float ray) : Visible(p,c,r), rayon(ray) {}
 	virtual void afficher(std::ostream &flux) const;
 	virtual Intersection* estTraverse(Segment s);
-	virtual float calculerAngle(Intersection i, Pos src);
-	Segment rayReflechi(Segment rayIncident, Intersection i);
+	//virtual float calculerAngle(Intersection i, Pos src);
+	//Segment rayReflechi(Segment rayIncident, Intersection i);
 	Pos calculNormale (Pos p);
 };
 
 
 //à modifier
-Segment Sphere::rayReflechi(Segment rayIncident, Intersection i)
+/*Segment Sphere::rayReflechi(Segment rayIncident, Intersection i)
 {
 	Pos normale = calculNormale(i.getOrigine());
 	rayIncident.setVecteur(rayIncident.getVecteur()/Pos::norm(rayIncident.getVecteur()));
@@ -31,7 +31,7 @@ Segment Sphere::rayReflechi(Segment rayIncident, Intersection i)
 	Pos vecReflechi = rayIncident.getVecteur() - 2*(Pos::scal(rayIncident.getVecteur(),normale))*normale;
 	Segment rayReflechi(i.getOrigine(), vecReflechi);
 	return rayReflechi;
-}
+}*/
 
 
 //regarder ici si erreur
@@ -52,12 +52,12 @@ Intersection* Sphere::estTraverse(Segment s)
 		Pos p2(s.getVecteur().getX()*t2 + s.getOrigine().getX(), s.getVecteur().getY()*t2 + s.getOrigine().getY(),s.getVecteur().getZ()*t2 + s.getOrigine().getZ());
 		if(s.getOrigine().distanceAvecPoint(p1) < s.getOrigine().distanceAvecPoint(p2))
 		{
-			Intersection* i = new Intersection(p1,calculNormale(p1),color);
+			Intersection* i = new Intersection(p1,calculNormale(p1),color, reflexion);
 			return i;
 		}
 		else
 		{
-			Intersection* i = new Intersection(p2,calculNormale(p2),color);
+			Intersection* i = new Intersection(p2,calculNormale(p2),color, reflexion);
 			return i;
 		}								 
 	}
@@ -65,7 +65,7 @@ Intersection* Sphere::estTraverse(Segment s)
 	{
 		float t = - b / (2*a);
 		Pos p(s.getVecteur().getX()*t + s.getOrigine().getX(), s.getVecteur().getY()*t + s.getOrigine().getY(),s.getVecteur().getZ()*t + s.getOrigine().getZ());
-		Intersection* i = new Intersection(p,calculNormale(p),color);
+		Intersection* i = new Intersection(p,calculNormale(p),color, reflexion);
 
 		return i;
 	}
@@ -94,12 +94,12 @@ Pos Sphere::calculNormale(Pos p)
 }
 
 //à changer
-float Sphere::calculerAngle(Intersection i, Pos src)
+/*float Sphere::calculerAngle(Intersection i, Pos src)
 {
 	Pos vec1 = position - i.getOrigine(); 
 	Pos vec2 = src - i.getOrigine();
 	float angle = Pos::scal(vec1,vec2);
 	return acos(angle/(Pos::norm(vec1)*Pos::norm(vec2))) - M_PI;
-}
+}*/
 
 #endif

@@ -11,13 +11,16 @@ class Intersection
 	Pos origine;
 	Pos normale;
 	RGB color;
+	float refl;
 
 	public :
 
 	Intersection(){};
-	Intersection(Pos p1, Pos p2, RGB c) : origine(p1),normale(p2), color(c){}
+	Intersection(Pos p1, Pos p2, RGB c, float r) : origine(p1),normale(p2), color(c), refl(r) {};
 
 
+	float getRefl(){return refl;}
+	void setRefl(float r){this->refl = r;}
 	Pos getOrigine(){return origine;}
 	Pos getNormale(){return normale;}
 	RGB getColor(){return color;}
