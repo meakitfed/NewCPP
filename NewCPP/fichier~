@@ -12,15 +12,15 @@
 110 90 30
 
 # screen horizontal resolution
-400
+10
 
 # background color
-250 0 0
+5 5 5
 # light source position
 100 120 0 255 255 255
 
 # three spheres
 sphere: 90 95 60 9 250 0 0 0.6
-sphere: 100 110 60 9 0 250 0 0.6
+sphere: 100 110 50 9 0 250 0 0.6
 sphere: 110 95 60 9 0 0 250 0.6
 triangle: 90 95 40 100 110 40 100 95 40 53 184 205 0.6

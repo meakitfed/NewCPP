@@ -67,7 +67,9 @@ void Ecran::drawImage(Pos posCam, std::vector<Visible*>* obj, Source src)
 	{
 		for(int j=0; j<resolution;j++)
 		{
-			pixel[i][j].drawPixel(posCam, obj, src);
+			Segment incident(posCam, pixel[i][j].getPosition());
+			pixel[i][j].setColor(pixel[i][j].drawPixel(incident, obj, src));
+			std::cout << std::endl << "OK C'EST CALCULE" << std:: endl << std::endl;
 		}
 	}
 }

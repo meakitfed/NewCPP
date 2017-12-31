@@ -71,6 +71,22 @@ Intersection* Triangle::estTraverse(Segment s)
 		//std::cout << p << std::endl;
 		if(dansTriangle(p))
 		{
+<<<<<<< HEAD
+=======
+			float t = -(norm.getX()*s.getOrigine().getX() + norm.getY() * s.getOrigine().getY() + norm.getZ() * s.getOrigine().getZ() + d)
+						/(norm.getX()*s.getVecteur().getX() + norm.getY()*s.getVecteur().getY() + norm.getZ()*s.getVecteur().getZ());
+			Pos p(s.getOrigine().getX()+s.getVecteur().getX()*t,s.getOrigine().getY()+s.getVecteur().getY()*t,s.getOrigine().getZ()+s.getVecteur().getZ()*t);
+			std::cout << p << std::endl;
+			if(dansTriangle(p))
+			{
+				Intersection* i = new Intersection(p,p,color,reflexion);
+				return i;
+			}
+			else
+			{
+				return NULL;
+			}
+>>>>>>> 97f0798434d55b06934e7f097329b314fc916e66
 
 			Intersection* i = new Intersection(p,calculNormale(p),color);
 			return i;
