@@ -8,6 +8,7 @@
 #include "Visible.hpp"
 #include "Segment.hpp"
 #include <math.h>
+#include <omp.h>
 
 class Ecran
 {
@@ -74,6 +75,7 @@ void Ecran::initEcran(RGB backgroundColor)
 void Ecran::drawImage(Pos posCam, std::vector<Visible*>* obj, Source src)
 {
 	//pour chaque pixel
+	#pragma omp parallel for
 	for(int i=0; i<resolution;i++)
 	{
 		for(int j=0; j<resolution;j++)
