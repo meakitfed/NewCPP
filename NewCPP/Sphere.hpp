@@ -16,26 +16,9 @@ class Sphere : public Visible
 	Sphere(Pos p, RGB c, float r, float ray) : Visible(p,c,r), rayon(ray) {}
 	virtual void afficher(std::ostream &flux) const;
 	virtual Intersection* estTraverse(Segment s);
-<<<<<<< HEAD
-	Segment rayReflechi(Segment rayIncident, Intersection i);
-=======
-	//virtual float calculerAngle(Intersection i, Pos src);
-	//Segment rayReflechi(Segment rayIncident, Intersection i);
->>>>>>> 97f0798434d55b06934e7f097329b314fc916e66
 	Pos calculNormale (Pos p);
 };
 
-
-//à modifier
-/*Segment Sphere::rayReflechi(Segment rayIncident, Intersection i)
-{
-	Pos normale = calculNormale(i.getOrigine());
-	rayIncident.setVecteur(rayIncident.getVecteur()/Pos::norm(rayIncident.getVecteur()));
-
-	Pos vecReflechi = rayIncident.getVecteur() - 2*(Pos::scal(rayIncident.getVecteur(),normale))*normale;
-	Segment rayReflechi(i.getOrigine(), vecReflechi);
-	return rayReflechi;
-}*/
 
 
 //regarder ici si erreur
@@ -96,18 +79,5 @@ Pos Sphere::calculNormale(Pos p)
 	normale = normale/Pos::norm(normale);
 	return normale;
 }
-
-<<<<<<< HEAD
-
-=======
-//à changer
-/*float Sphere::calculerAngle(Intersection i, Pos src)
-{
-	Pos vec1 = position - i.getOrigine(); 
-	Pos vec2 = src - i.getOrigine();
-	float angle = Pos::scal(vec1,vec2);
-	return acos(angle/(Pos::norm(vec1)*Pos::norm(vec2))) - M_PI;
-}*/
->>>>>>> 97f0798434d55b06934e7f097329b314fc916e66
 
 #endif

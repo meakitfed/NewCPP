@@ -21,19 +21,15 @@ class Pixel
 	void setPosition(Pos p){position=p;}
 	RGB drawPixel(Segment incident, std::vector<Visible*>* obj, Source src);
 	RGB couleurPropre(Intersection inter, Source src, int e);
-
-
 };
 
 
-RGB Pixel::couleurPropre(Intersection inter, Source src , int e){
-	
-	//rajouter calcul d'obsacle entre inter et src
+RGB Pixel::couleurPropre(Intersection inter, Source src , int e)
+{
 	RGB couleurCalculee;
 	Segment intersrc(inter.getOrigine(), src.getPosition());
 	couleurCalculee = e*inter.getNormale().calculeCos(intersrc.getVecteur())*inter.getColor()*src.getColor();
 	return couleurCalculee;
-	//this->setColor(inter.getColor());
 }
 
 
@@ -51,13 +47,11 @@ RGB Pixel::drawPixel(Segment incident, std::vector<Visible*>* obj, Source src){
 		//on met à jour la distance si nécessaire
 		if(interTemp != NULL)
 		{
-			//std::cout << "lol" << std::endl;
 			float d = incident.getOrigine().distanceAvecPoint(interTemp->getOrigine());
 			if(distanceAvecPixel > d || distanceAvecPixel==-1)
 			{
 				inter = *interTemp;
 				distanceAvecPixel = d;
-				//this->setColor(inter.getColor());
 			}
 		}
 		delete interTemp;
@@ -77,13 +71,8 @@ RGB Pixel::drawPixel(Segment incident, std::vector<Visible*>* obj, Source src){
 			if(interTemp != NULL)
 			{
 				float d = inter.getOrigine().distanceAvecPoint(interTemp->getOrigine());
-<<<<<<< HEAD
-				if(0.1<d && inter.getOrigine().distanceAvecPoint(src.getPosition()) > interTemp->getOrigine().distanceAvecPoint(src.getPosition()))
-=======
 				if( 0.1 < d && inter.getOrigine().distanceAvecPoint(src.getPosition()) > interTemp->getOrigine().distanceAvecPoint(src.getPosition()))
->>>>>>> 97f0798434d55b06934e7f097329b314fc916e66
 				{
-					//std::cout << "lol" << std::endl;
 					e = 0;
 				}
 			}

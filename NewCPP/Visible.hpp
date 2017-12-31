@@ -23,16 +23,11 @@ class Visible
 	virtual Pos calculNormale(Pos p) = 0;
 	virtual Intersection* estTraverse(Segment s) = 0;
 	virtual void afficher(std::ostream &flux) const;
-	//virtual Segment rayReflechi(Segment rayIncident, Intersection i){return rayIncident;};
 	Pos getPosition(){ return position;};
 	void setPosition(Pos p){position = p;};
 	void setColor(RGB color){this->color = color;}
 	RGB getColor(){return color;}
-<<<<<<< HEAD
 	float calculerAngle(Intersection i, Pos src);
-=======
-	//virtual float calculerAngle(Intersection i, Pos src){return 0;};
->>>>>>> 97f0798434d55b06934e7f097329b314fc916e66
 };
 
 void Visible::afficher(std::ostream &flux) const

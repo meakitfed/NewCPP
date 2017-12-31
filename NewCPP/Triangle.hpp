@@ -42,11 +42,10 @@ bool Triangle::dansTriangle(Pos p)
 
 
 	float areaABC = fabs(Pos::norm(AB)*Pos::norm(AC))/2;
-	//std::cout << Pos::norm(AB) << " " << Pos::norm(AC) << " " << Pos::norm(AB)*Pos::norm(AC)  << " " << abs(Pos::norm(AB)*Pos::norm(AC))/2 << std::endl;
 	float alpha = fabs(Pos::norm(MB)*Pos::norm(MC))/(2*areaABC);
 	float beta = fabs(Pos::norm(MC)*Pos::norm(MA))/(2*areaABC);
 	float gamma = 1-alpha-beta;
-	//std::cout << areaABC <<  " "<<alpha << " " << beta << " " << gamma  << std::endl;
+
 	return (alpha<=1 && alpha >=0 && beta<=1  && beta >=0  && gamma<=1  && gamma >=0  );
 }
 
@@ -54,12 +53,8 @@ Intersection* Triangle::estTraverse(Segment s)
 {
 	
 	Pos AB = position.segment(position1);
-	//std::cout << AB << std::endl;
 	Pos AC = position.segment(position2);
-	//std::cout << AC << std::endl;
-
 	Pos norm = AB.produitVectoriel(AC);
-	//std::cout << norm << std::endl;
 
 	//équation de plan 
 	float d =(norm.getX()*(-position.getX()) + norm.getY() *(-position.getY()) + norm.getZ() * (-position.getZ()));
@@ -68,15 +63,12 @@ Intersection* Triangle::estTraverse(Segment s)
 		float t = -(norm.getX()*s.getOrigine().getX() + norm.getY() * s.getOrigine().getY() + norm.getZ() * s.getOrigine().getZ() + d)
 					/(norm.getX()*s.getVecteur().getX() + norm.getY()*s.getVecteur().getY() + norm.getZ()*s.getVecteur().getZ());
 		Pos p(s.getOrigine().getX()+s.getVecteur().getX()*t,s.getOrigine().getY()+s.getVecteur().getY()*t,s.getOrigine().getZ()+s.getVecteur().getZ()*t);
-		//std::cout << p << std::endl;
 		if(dansTriangle(p))
 		{
-<<<<<<< HEAD
-=======
+
 			float t = -(norm.getX()*s.getOrigine().getX() + norm.getY() * s.getOrigine().getY() + norm.getZ() * s.getOrigine().getZ() + d)
 						/(norm.getX()*s.getVecteur().getX() + norm.getY()*s.getVecteur().getY() + norm.getZ()*s.getVecteur().getZ());
 			Pos p(s.getOrigine().getX()+s.getVecteur().getX()*t,s.getOrigine().getY()+s.getVecteur().getY()*t,s.getOrigine().getZ()+s.getVecteur().getZ()*t);
-			std::cout << p << std::endl;
 			if(dansTriangle(p))
 			{
 				Intersection* i = new Intersection(p,p,color,reflexion);
@@ -86,9 +78,7 @@ Intersection* Triangle::estTraverse(Segment s)
 			{
 				return NULL;
 			}
->>>>>>> 97f0798434d55b06934e7f097329b314fc916e66
-
-			Intersection* i = new Intersection(p,calculNormale(p),color);
+			Intersection* i = new Intersection(p,calculNormale(p),color, reflexion);
 			return i;
 		}
 		else

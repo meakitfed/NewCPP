@@ -7,7 +7,6 @@
 
 class Intersection
 {
-
 	Pos origine;
 	Pos normale;
 	RGB color;
